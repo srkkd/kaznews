@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Подробности новости</title>
+  <style>
+    :root {
+      --main-bg: #f0f2f5;
+      --card-bg: #fff;
+      --accent: #007bff;
+      --text: #222;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: var(--main-bg);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .news-title {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .news-meta {
+      color: gray;
+      margin-bottom: 20px;
+    }
+
+    .news-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .news-text {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <a href="index.html" class="back-link">← Назад к новостям</a>
+  <div id="newsContainer">Загрузка...</div>
+</div>
+
+<script>
+  const newsData = [
+    {
+      id: 1,
+      title: "Президент выступил с обращением",
+      category: "Политика",
+      date: "2025-06-12",
+      image: "images/president.jpg",
+      content: `Сегодня президент Казахстана выступил с обращением к народу, в котором затронул вопросы реформ, устойчивого развития и внешней политики. 
+      <br><br>Он подчеркнул необходимость модернизации образования, цифровизации экономики и расширения международного сотрудничества.`
+    },
+    {
+      id: 2,
+      title: "Сборная Казахстана победила",
+      category: "Спорт",
+      date: "2025-06-11",
+      image: "images/sport.jpg",
+      content: `Вчера в Астане сборная Казахстана по футболу одержала важную победу над сборной Узбекистана со счётом 2:1.
+      <br><br>Игра выдалась напряжённой, но благодаря слаженной работе команды и поддержке болельщиков была достигнута победа.`
+    }
+  ];
+
+  const params = new URLSearchParams(window.location.search);
+  const id = parseInt(params.get("id"));
+
+  const news = newsData.find(item => item.id === id);
+  const container = document.getElementById("newsContainer");
+
+  if (news) {
+    container.innerHTML = `
+      <h1 class="news-title">${news.title}</h1>
+      <p class="news-meta">${news.date} — ${news.category}</p>
+      <img src="${news.image}" class="news-image" alt="Новость">
+      <div class="news-text">${news.content}</div>
+    `;
+  } else {
+    container.innerHTML = `<p>Новость не найдена.</p>`;
+  }
+</script>
+
+</body>
+</html>

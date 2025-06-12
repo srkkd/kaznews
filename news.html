@@ -2,111 +2,1281 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Подробности новости</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KazNews - Новости Казахстана</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    :root {
-      --main-bg: #f0f2f5;
-      --card-bg: #fff;
-      --accent: #007bff;
-      --text: #222;
-      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: var(--main-bg);
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      line-height: 1.6;
     }
 
-    .container {
-      max-width: 800px;
-      margin: auto;
-      background: var(--card-bg);
-      border-radius: 10px;
-      box-shadow: var(--shadow);
-      padding: 20px;
+    /* Header */
+    .top-bar {
+      background: #1e293b;
+      color: white;
+      padding: 8px 0;
+      font-size: 12px;
     }
 
-    .back-link {
-      display: inline-block;
-      margin-bottom: 20px;
+    .top-bar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .date-weather {
+      display: flex;
+      gap: 20px;
+    }
+
+    .social-links a {
+      color: #94a3b8;
+      margin-left: 10px;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #00b050;
+    }
+
+    header {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #00b050;
+    }
+
+    .logo span {
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 400;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: #f1f5f9;
+      border-radius: 25px;
+      padding: 8px 15px;
+      width: 300px;
+    }
+
+    .search-box input {
+      border: none;
+      background: none;
+      outline: none;
+      flex: 1;
+      padding: 5px;
+      font-size: 14px;
+    }
+
+    .search-box i {
+      color: #64748b;
+      cursor: pointer;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .weather-widget {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: #f1f5f9;
+      border-radius: 20px;
+      font-size: 12px;
+    }
+
+    nav {
+      background: #00b050;
+      padding: 0;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li a {
+      display: block;
+      padding: 15px 20px;
+      color: white;
       text-decoration: none;
-      color: var(--accent);
-      font-weight: bold;
+      font-weight: 500;
+      transition: background 0.3s;
+      position: relative;
     }
 
-    .news-title {
-      font-size: 26px;
+    .nav-links li a:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .nav-links li a.active {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .breaking-news {
+      background: #dc2626;
+      color: white;
+      padding: 10px 0;
+      overflow: hidden;
+    }
+
+    .breaking-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .breaking-label {
+      background: white;
+      color: #dc2626;
+      padding: 5px 15px;
+      border-radius: 15px;
+      font-weight: 600;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .breaking-text {
+      animation: scroll 30s linear infinite;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    .main-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      margin-bottom: 40px;
+    }
+
+    .hero-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white;
+      padding: 40px 30px 30px;
+    }
+
+    .hero-overlay .category {
+      background: #00b050;
+      padding: 5px 12px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .hero-overlay h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      line-height: 1.3;
+    }
+
+    .hero-overlay p {
+      font-size: 16px;
+      opacity: 0.9;
+      margin-bottom: 15px;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    /* News Sections */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #00b050;
+    }
+
+    .section-header h3 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .view-all {
+      color: #00b050;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .news-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .news-card .content {
+      padding: 20px;
+    }
+
+    .news-card .category {
+      background: #e2e8f0;
+      color: #475569;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .news-card h4 {
+      font-size: 16px;
+      font-weight: 600;
       margin-bottom: 10px;
+      line-height: 1.4;
+      color: #1e293b;
+    }
+
+    .news-card p {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.5;
+      margin-bottom: 12px;
     }
 
     .news-meta {
-      color: gray;
-      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #94a3b8;
     }
 
-    .news-image {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
+    /* Sidebar */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .widget {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .widget h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #1e293b;
+      border-bottom: 2px solid #00b050;
+      padding-bottom: 10px;
+    }
+
+    .trending-list {
+      list-style: none;
+    }
+
+    .trending-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .trending-number {
+      background: #00b050;
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .trending-list li a {
+      text-decoration: none;
+      color: #1e293b;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .trending-list li a:hover {
+      color: #00b050;
+    }
+
+    .categories-list {
+      list-style: none;
+    }
+
+    .categories-list li {
+      margin-bottom: 8px;
+    }
+
+    .categories-list li a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      background: #f8fafc;
       border-radius: 8px;
-      margin-bottom: 20px;
+      text-decoration: none;
+      color: #475569;
+      font-size: 14px;
+      transition: all 0.3s;
     }
 
-    .news-text {
-      font-size: 16px;
-      line-height: 1.6;
-      color: var(--text);
+    .categories-list li a:hover {
+      background: #00b050;
+      color: white;
+    }
+
+    .newsletter {
+      text-align: center;
+    }
+
+    .newsletter p {
+      margin-bottom: 20px;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .newsletter-form input {
+      padding: 12px 15px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .newsletter-form button {
+      background: #00b050;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .newsletter-form button:hover {
+      background: #009940;
+    }
+
+    /* Footer */
+    footer {
+      background: #1e293b;
+      color: white;
+      padding: 50px 0 20px;
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+
+    .footer-section h5 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #00b050;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-section ul li a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    .footer-section ul li a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #334155;
+      margin-top: 40px;
+      padding-top: 20px;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .search-box {
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+      }
+
+      .nav-links li a {
+        padding: 12px 15px;
+        font-size: 14px;
+      }
+
+      .main-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .hero-overlay h2 {
+        font-size: 24px;
+      }
+
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .breaking-container {
+        padding: 0 20px;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <a href="index.html" class="back-link">← Назад к новостям</a>
-  <div id="newsContainer">Загрузка...</div>
+<!-- Top Bar -->
+<div class="top-bar">
+  <div class="container">
+    <div class="date-weather">
+      <span><i class="fas fa-calendar"></i> <span id="current-date"></span></span>
+      <span><i class="fas fa-thermometer-half"></i> Астана: </span>
+    </div>
+    <div class="social-links">
+      <!-- Ссылки на социальные сети -->
+      <a href="https://www.facebook.com/eknot.me" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://t.me/eknot_support_bot" target="_blank"><i class="fab fa-telegram"></i></a>
+      <a href="https://www.instagram.com/eknot.me/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://api.whatsapp.com/message/L52NIEVMZ4GXB1?autoload=1&app_absent=0" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
 </div>
 
-<script>
-  const newsData = [
-    {
-      id: 1,
-      title: "Президент выступил с обращением",
-      category: "Политика",
-      date: "2025-06-12",
-      image: "images/president.jpg",
-      content: `Сегодня президент Казахстана выступил с обращением к народу, в котором затронул вопросы реформ, устойчивого развития и внешней политики. 
-      <br><br>Он подчеркнул необходимость модернизации образования, цифровизации экономики и расширения международного сотрудничества.`
-    },
-    {
-      id: 2,
-      title: "Сборная Казахстана победила",
-      category: "Спорт",
-      date: "2025-06-11",
-      image: "images/sport.jpg",
-      content: `Вчера в Астане сборная Казахстана по футболу одержала важную победу над сборной Узбекистана со счётом 2:1.
-      <br><br>Игра выдалась напряжённой, но благодаря слаженной работе команды и поддержке болельщиков была достигнута победа.`
-    }
-  ];
+<!-- Header -->
+<header>
+  <div class="header-content">
+    <div class="logo">
+      <i class="fas fa-newspaper" style="font-size: 28px; color: #00b050;"></i>
+      <div>
+        <h1>KazNews</h1>
+        <span>Новости Казахстана</span>
+      </div>
+    </div>
 
-  const params = new URLSearchParams(window.location.search);
-  const id = parseInt(params.get("id"));
+    <div class="search-box">
+      <input type="text" placeholder="Поиск новостей...">
+      <i class="fas fa-search"></i>
+    </div>
 
-  const news = newsData.find(item => item.id === id);
-  const container = document.getElementById("newsContainer");
+    <div class="header-actions">
+      <div class="weather-widget">
+        <i class="fas fa-cloud-sun"></i>
+        <span id="weather-location">Астана:</span><br>
+        <span id="weather-temp"></span>
+      </div>
+    </div>
+  </div>
+</header>
 
-  if (news) {
-    container.innerHTML = `
-      <h1 class="news-title">${news.title}</h1>
-      <p class="news-meta">${news.date} — ${news.category}</p>
-      <img src="${news.image}" class="news-image" alt="Новость">
-      <div class="news-text">${news.content}</div>
-    `;
-  } else {
-    container.innerHTML = `<p>Новость не найдена.</p>`;
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-container">
+    <ul class="nav-links">
+      <li><a href="#" class="active"><i class="fas fa-home"></i> Главная</a></li>
+      <li><a href="#"><i class="fas fa-landmark"></i> Политика</a></li>
+      <li><a href="#"><i class="fas fa-chart-line"></i> Экономика</a></li>
+      <li><a href="#"><i class="fas fa-users"></i> Общество</a></li>
+      <li><a href="#"><i class="fas fa-futbol"></i> Спорт</a></li>
+      <li><a href="#"><i class="fas fa-laptop"></i> Технологии</a></li>
+      <li><a href="#"><i class="fas fa-globe"></i> Мир</a></li>
+      <li><a href="#"><i class="fas fa-camera"></i> Фото</a></li>
+      <li><a href="#"><i class="fas fa-play"></i> Видео</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Breaking News -->
+<div class="breaking-news">
+  <div class="breaking-container">
+    <div class="breaking-label">СРОЧНО</div>
+    <div class="breaking-text">
+      Президент Казахстана подписал важный закон о цифровизации • Курс тенге укрепился на 2.5% • Сборная Казахстана победила в международном турнире
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-card">
+      <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=400&fit=crop" alt="Главная новость">
+      <div class="hero-overlay">
+        <span class="category">ПОЛИТИКА</span>
+        <h2>Президент Казахстана выступил с важным заявлением о будущем страны</h2>
+        <p>На сегодняшнем брифинге глава государства заявил о начале новой экономической политики и обозначил ключевые реформы на 2025 год, которые коснутся всех сфер жизни общества.</p>
+        <div class="hero-meta">
+          <span><i class="fas fa-clock"></i> 2 часа назад</span>
+          <span><i class="fas fa-eye"></i> 15,847 просмотров</span>
+          <span><i class="fas fa-comment"></i> 234 комментария</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-layout">
+    <!-- Main Content -->
+    <main>
+      <!-- Latest News -->
+      <section>
+        <div class="section-header">
+          <h3><i class="fas fa-fire"></i> Актуальные новости</h3>
+          <a href="#" class="view-all">Все новости <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="news-grid">
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=200&fit=crop" alt="Новость">
+            <div class="content">
+              <span class="category">ЭКОНОМИКА</span>
+              <h4>Курс тенге укрепился на фоне мировых событий</h4>
+              <p>Национальный банк сообщил об укреплении курса национальной валюты на 1.3% по отношению к доллару США.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 3 часа назад</span>
+                <span><i class="fas fa-eye"></i> 8,234</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=200&fit=crop" alt="Новость">
+            <div class="content">
+              <span class="category">СПОРТ</span>
+              <h4>Сборная Казахстана обыграла команду Узбекистана</h4>
+              <p>Товарищеский матч завершился со счётом 2:1 в пользу казахстанской команды. Главный тренер поблагодарил игроков.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 4 часа назад</span>
+                <span><i class="fas fa-eye"></i> 12,567</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=200&fit=crop" alt="Новость">
+            <div class="content">
+              <span class="category">ОБРАЗОВАНИЕ</span>
+              <h4>Министерство образования представило новую реформу</h4>
+              <p>Ожидается полная цифровизация школьных программ уже с сентября этого года по всей территории страны.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 5 часов назад</span>
+                <span><span><i class="fas fa-eye"></i> 6,789</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=200&fit=crop" alt="Новость">
+            <div class="content">
+              <span class="category">ТЕХНОЛОГИИ</span>
+              <h4>Запуск новой IT-платформы для госуслуг</h4>
+              <p>Правительство представило революционную платформу, которая объединит все государственные услуги в одном месте.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 6 часов назад</span>
+                <span><i class="fas fa-eye"></i> 9,345</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400&h=200&fit=crop" alt="Новость">
+            <div class="content">
+              <span class="category">ОБЩЕСТВО</span>
+              <h4>Открытие нового медицинского центра в Алматы</h4>
+              <p>Современный медицинский комплекс оснащён новейшим оборудованием и будет обслуживать до 1000 пациентов в день.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 7 часов назад</span>
+                <span><i class="fas fa-eye"></i> 4,567</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1569950520135-8ba5ff1e6db9?w=400&h=200&fit=crop" alt="Новость">
+            <div class="content">
+              <span class="category">КУЛЬТУРА</span>
+              <h4>Фестиваль национальной культуры пройдёт в столице</h4>
+              <p>Трёхдневное мероприятие объединит лучших артистов и мастеров народного творчества со всего Казахстана.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 8 часов назад</span>
+                <span><i class="fas fa-eye"></i> 3,234</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Regional News -->
+      <section>
+        <div class="section-header">
+          <h3><i class="fas fa-map-marker-alt"></i> Региональные новости</h3>
+          <a href="#" class="view-all">Все регионы <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="news-grid">
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1f?w=400&h=200&fit=crop" alt="Астана">
+            <div class="content">
+              <span class="category">АСТАНА</span>
+              <h4>Реконструкция центральной площади завершена</h4>
+              <p>Масштабные работы по благоустройству главной площади столицы успешно завершены к намеченному сроку.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 1 день назад</span>
+                <span><i class="fas fa-eye"></i> 7,890</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1528543606781-2f6e6857f318?w=400&h=200&fit=crop" alt="Алматы">
+            <div class="content">
+              <span class="category">АЛМАТЫ</span>
+              <h4>Новая линия метро откроется в следующем году</h4>
+              <p>Строительство второй ветки алматинского метрополитена идёт с опережением графика на несколько месяцев.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 1 день назад</span>
+                <span><i class="fas fa-eye"></i> 11,234</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1605649487212-47bdab064df4?w=400&h=200&fit=crop" alt="Шымкент">
+            <div class="content">
+              <span class="category">ШЫМКЕНТ</span>
+              <h4>Открытие крупнейшего торгового центра региона</h4>
+              <p>Новый торговый комплекс создаст более 2000 рабочих мест и станет центром притяжения для всего региона.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 2 дня назад</span>
+                <span><i class="fas fa-eye"></i> 5,678</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <!-- Trending -->
+      <div class="widget">
+        <h4><i class="fas fa-fire"></i> В тренде</h4>
+        <ol class="trending-list">
+          <li>
+            <span class="trending-number">1</span>
+            <a href="#">Президент подписал новый закон о цифровизации государственных услуг</a>
+          </li>
+          <li>
+            <span class="trending-number">2</span>
+            <a href="#">Казахстанский тенге показал рекордное укрепление за последний месяц</a>
+          </li>
+          <li>
+            <span class="trending-number">3</span>
+            <a href="#">Сборная Казахстана по футболу вышла в финал чемпионата Азии</a>
+          </li>
+          <li>
+            <span class="trending-number">4</span>
+            <a href="#">Открытие нового международного аэропорта в Туркестане</a>
+          </li>
+          <li>
+            <span class="trending-number">5</span>
+            <a href="#">Запуск космического спутника казахстанского производства</a>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Categories -->
+      <div class="widget">
+        <h4><i class="fas fa-list"></i> Категории</h4>
+        <ul class="categories-list">
+          <li><a href="#">Политика <span>1,234</span></a></li>
+          <li><a href="#">Экономика <span>987</span></a></li>
+          <li><a href="#">Общество <span>1,567</span></a></li>
+          <li><a href="#">Спорт <span>789</span></a></li>
+          <li><a href="#">Технологии <span>456</span></a></li>
+          <li><a href="#">Культура <span>345</span></a></li>
+          <li><a href="#">Здоровье <span>678</span></a></li>
+          <li><a href="#">Образование <span>432</span></a></li>
+          <li><a href="#">Регионы <span>891</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Weather Widget -->
+<div class="widget">
+  <h4><i class="fas fa-cloud-sun"></i> Погода в Казахстане</h4>
+  <div class="weather-info">
+    <!-- Погода для Астаны -->
+    <div class="weather-item">
+      <div class="weather-city">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Астана</span>
+      </div>
+      <div id="weather-astana-temp" class="weather-temp">+18°C</div>
+      <div id="weather-astana-desc" class="weather-desc">Переменная облачность</div>
+    </div>
+    <!-- Погода для Алматы -->
+    <div class="weather-item">
+      <div class="weather-city">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Алматы</span>
+      </div>
+      <div id="weather-almaty-temp" class="weather-temp">+22°C</div>
+      <div id="weather-almaty-desc" class="weather-desc">Солнечно</div>
+    </div>
+    <!-- Погода для Шымкента -->
+    <div class="weather-item">
+      <div class="weather-city">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Шымкент</span>
+      </div>
+      <div id="weather-shymkent-temp" class="weather-temp">+25°C</div>
+      <div id="weather-shymkent-desc" class="weather-desc">Ясно</div>
+    </div>
+  </div>
+</div>
+
+      <!-- Newsletter -->
+      <div class="widget newsletter">
+        <h4><i class="fas fa-envelope"></i> Подписка на новости</h4>
+        <p>Получайте самые важные новости Казахстана прямо на вашу почту</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Ваш email адрес" required>
+          <button type="submit">Подписаться</button>
+        </form>
+      </div>
+
+      <!-- Ad Banner -->
+      <div class="widget" style="text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <h4 style="color: white; border-bottom: 2px solid white;">Реклама</h4>
+        <div style="padding: 20px;">
+          <i class="fas fa-ad" style="font-size: 48px; margin-bottom: 15px;"></i>
+          <h5 style="margin-bottom: 10px;">Разместите рекламу здесь</h5>
+          <p style="font-size: 12px; opacity: 0.9;">Свяжитесь с нами для размещения вашей рекламы</p>
+          <button style="background: white; color: #667eea; border: none; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-top: 10px; cursor: pointer;">Связаться</button>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="widget">
+        <h4><i class="fas fa-link"></i> Полезные ссылки</h4>
+        <ul class="categories-list">
+          <li><a href="#">Правительство РК <i class="fas fa-external-link-alt"></i></a></li>
+          <li><a href="#">Президент.kz <i class="fas fa-external-link-alt"></i></a></li>
+          <li><a href="#">Нацбанк РК <i class="fas fa-external-link-alt"></i></a></li>
+          <li><a href="#">Курс валют <i class="fas fa-external-link-alt"></i></a></li>
+          <li><a href="#">Погода <i class="fas fa-external-link-alt"></i></a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Video Section -->
+  <section style="margin-top: 50px;">
+    <div class="section-header">
+      <h3><i class="fas fa-play-circle"></i> Видео новости</h3>
+      <a href="#" class="view-all">Все видео <i class="fas fa-arrow-right"></i></a>
+    </div>
+    
+    <div class="news-grid">
+      <div class="news-card" style="position: relative;">
+        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=200&fit=crop" alt="Видео">
+        <div class="play-button" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.7); color: white; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer;">
+          <i class="fas fa-play"></i>
+        </div>
+        <div class="content">
+          <span class="category">ВИДЕО</span>
+          <h4>Интервью с Президентом Казахстана</h4>
+          <p>Эксклюзивное интервью главы государства о планах развития страны на ближайшие годы.</p>
+          <div class="news-meta">
+            <span><i class="fas fa-play"></i> 156,789 просмотров</span>
+            <span><i class="fas fa-clock"></i> 12:34</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-card" style="position: relative;">
+        <img src="https://images.unsplash.com/photo-1585241645927-c7a8e5840c42?w=400&h=200&fit=crop" alt="Видео">
+        <div class="play-button" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.7); color: white; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer;">
+          <i class="fas fa-play"></i>
+        </div>
+        <div class="content">
+          <span class="category">ВИДЕО</span>
+          <h4>Репортаж с экономического форума</h4>
+          <p>Подробный обзор ключевых решений международного экономического форума в Астане.</p>
+          <div class="news-meta">
+            <span><i class="fas fa-play"></i> 89,234 просмотров</span>
+            <span><i class="fas fa-clock"></i> 8:47</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-card" style="position: relative;">
+        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=200&fit=crop" alt="Видео">
+        <div class="play-button" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.7); color: white; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer;">
+          <i class="fas fa-play"></i>
+        </div>
+        <div class="content">
+          <span class="category">ВИДЕО</span>
+          <h4>Лучшие моменты футбольного матча</h4>
+          <p>Основные моменты победного матча сборной Казахстана против команды Узбекистана.</p>
+          <div class="news-meta">
+            <span><i class="fas fa-play"></i> 234,567 просмотров</span>
+            <span><i class="fas fa-clock"></i> 5:23</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h5>О проекте</h5>
+      <ul>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Редакция</a></li>
+        <li><a href="#">Контакты</a></li>
+        <li><a href="#">Реклама</a></li>
+        <li><a href="#">Вакансии</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h5>Разделы</h5>
+      <ul>
+        <li><a href="#">Политика</a></li>
+        <li><a href="#">Экономика</a></li>
+        <li><a href="#">Общество</a></li>
+        <li><a href="#">Спорт</a></li>
+        <li><a href="#">Культура</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h5>Сервисы</h5>
+      <ul>
+        <li><a href="#">Курсы валют</a></li>
+        <li><a href="#">Погода</a></li>
+        <li><a href="#">Архив новостей</a></li>
+        <li><a href="#">RSS</a></li>
+        <li><a href="#">Мобильное приложение</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h5>Связь с нами</h5>
+      <ul>
+        <li><a href="mailto:info@eknot.me"><i class="fas fa-envelope"></i> info@eknot.me</a></li>
+        <li><a href="tel:+77074085858"><i class="fas fa-phone"></i> +7 (707) 408 58 58</a></li>
+        <li><a href="https://t.me/eknot_support_bot"><i class="fab fa-telegram"></i> eknot_support_bot</a></li>
+        <li><a href="https://api.whatsapp.com/message/L52NIEVMZ4GXB1?autoload=1&app_absent=0"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+      </ul>
+      <div style="margin-top: 20px;">
+        <a href="https://www.facebook.com/eknot.me" style="color: #94a3b8; font-size: 20px; margin-right: 15px;"><i class="fab fa-facebook"></i></a>
+        <a href="https://t.me/eknot_support_bot" style="color: #94a3b8; font-size: 20px; margin-right: 15px;"><i class="fab fa-telegram"></i></a>
+        <a href="https://www.instagram.com/eknot.me/" style="color: #94a3b8; font-size: 20px; margin-right: 15px;"><i class="fab fa-instagram"></i></a>
+        <a href="https://api.whatsapp.com/message/L52NIEVMZ4GXB1?autoload=1&app_absent=0" style="color: #94a3b8; font-size: 20px; margin-right: 15px;"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <p>&copy; 2025 KazNews — Новости Казахстана. Все права защищены. | <a href="#" style="color: #94a3b8;">Политика конфиденциальности</a> | <a href="#" style="color: #94a3b8;">Пользовательское соглашение</a></p>
+  </div>
+</footer>
+
+<style>
+  .weather-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
+
+  .weather-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #f8fafc;
+    border-radius: 8px;
+  }
+
+  .weather-city {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .weather-temp {
+    font-size: 18px;
+    font-weight: 600;
+    color: #00b050;
+  }
+
+  .weather-desc {
+    font-size: 12px;
+    color: #64748b;
+    text-align: right;
+  }
+
+  .play-button:hover {
+    background: rgba(0,176,80,0.9) !important;
+    transform: translate(-50%, -50%) scale(1.1);
+    transition: all 0.3s ease;
+  }
+
+  /* Добавляем интерактивность */
+  .news-card:hover .play-button {
+    background: rgba(0,176,80,0.8);
+  }
+
+  /* Анимация для breaking news */
+  @keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+  }
+
+  .breaking-label {
+    animation: pulse 2s infinite;
+  }
+
+  /* Улучшение мобильной версии */
+  @media (max-width: 480px) {
+    .hero-overlay h2 {
+      font-size: 20px;
+    }
+    
+    .hero-overlay p {
+      font-size: 14px;
+    }
+    
+    .section-header h3 {
+      font-size: 20px;
+    }
+    
+    .weather-item {
+      flex-direction: column;
+      text-align: center;
+      gap: 5px;
+    }
+    
+    .weather-desc {
+      text-align: center;
+    }
+  }
+</style>
+
+<script>
+  // Простая функциональность для поиска
+  document.querySelector('.search-box input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      alert('Поиск: ' + this.value);
+    }
+  });
+
+  document.querySelector('.search-box i').addEventListener('click', function() {
+    const searchInput = document.querySelector('.search-box input');
+    if (searchInput.value.trim()) {
+      alert('Поиск: ' + searchInput.value);
+    }
+  });
+
+  // Обработка формы подписки
+  document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = this.querySelector('input[type="email"]').value;
+    alert('Спасибо за подписку! Email: ' + email);
+    this.reset();
+  });
+
+  // Обновление времени
+  function updateTime() {
+    const now = new Date();
+    const options = { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric',
+      weekday: 'long'
+    };
+    const dateStr = now.toLocaleDateString('ru-RU', options);
+    const timeElements = document.querySelectorAll('.top-bar .date-weather span:first-child');
+    timeElements.forEach(elem => {
+      elem.innerHTML = '<i class="fas fa-calendar"></i> ' + dateStr;
+    });
+  }
+
+  // Инициализация
+  updateTime();
+  setInterval(updateTime, 60000); // Обновляем каждую минуту
+
+  // Плавная прокрутка для якорных ссылок
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // Эффект параллакса для hero секции
+  window.addEventListener('scroll', function() {
+    const scrolled = window.pageYOffset;
+    const parallax = document.querySelector('.hero-card img');
+    if (parallax) {
+      const speed = scrolled * 0.5;
+      parallax.style.transform = `translateY(${speed}px)`;
+    }
+  });
+</script>
+
+<!-- Подключаем JavaScript для получения погоды -->
+<script>
+  // Функция для получения данных о погоде
+async function getWeather() {
+  const city = "Astana"; // Город для погоды
+  const apiKey = "160a9262780fa3f0878c21ece344d39c"; // Замените на ваш API ключ
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=ru`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (data.cod === 200) {
+      const temp = Math.round(data.main.temp); // Температура
+      const description = data.weather[0].description; // Описание погоды
+      // Обновляем элементы на странице
+      document.getElementById('weather-location').innerText = `${city}`;
+      document.getElementById('weather-temp').innerText = `+${temp}°C, ${description}`;
+    } else {
+      console.error('Ошибка при получении данных о погоде'); 
+    }
+  } catch (error) {
+    console.error('Ошибка сети:', error);
+  }
+}
+
+// Вызываем функцию при загрузке страницы
+window.onload = getWeather;
+</script>
+
+<script>
+  // Функция для получения погоды
+  async function getWeather() {
+    const city = "Astana"; // Город для погоды
+    const apiKey = "160a9262780fa3f0878c21ece344d39c"; // Замените на ваш API ключ
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=ru`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (data.cod === 200) {
+        const temp = Math.round(data.main.temp); // Температура
+        const description = data.weather[0].description; // Описание погоды
+        const weatherElement = document.querySelector('.top-bar .date-weather span:nth-child(2)'); // Место для погоды в коде
+        weatherElement.innerHTML = `<i class="fas fa-thermometer-half"></i> Астана: +${temp}°C, ${description}`;
+      } else {
+        console.error('Ошибка при получении данных о погоде');
+      }
+    } catch (error) {
+      console.error('Ошибка сети:', error);
+    }
+  }
+
+  // Вызываем функцию для загрузки данных о погоде
+  getWeather();
+</script>
+
+<script>
+  // Функция для получения данных о погоде для каждого города
+async function getWeather(city, elementTempId, elementDescId) {
+  const apiKey = "160a9262780fa3f0878c21ece344d39c"; // Замените на ваш API ключ
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=ru`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (data.cod === 200) {
+      const temp = Math.round(data.main.temp); // Температура
+      const description = data.weather[0].description; // Описание погоды
+      // Обновляем элементы на странице
+      document.getElementById(elementTempId).innerText = `+${temp}°C`;
+      document.getElementById(elementDescId).innerText = description.charAt(0).toUpperCase() + description.slice(1);
+    } else {
+      console.error('Ошибка при получении данных о погоде');
+    }
+  } catch (error) {
+    console.error('Ошибка сети:', error);
+  }
+}
+
+// Получаем погоду для всех городов при загрузке страницы
+window.onload = function() {
+  getWeather('Astana', 'weather-astana-temp', 'weather-astana-desc');
+  getWeather('Almaty', 'weather-almaty-temp', 'weather-almaty-desc');
+  getWeather('Shymkent', 'weather-shymkent-temp', 'weather-shymkent-desc');
+};
 </script>
 
 </body>

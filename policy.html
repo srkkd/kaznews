@@ -676,22 +676,6 @@
 </head>
 <body>
 
-<!-- Top Bar -->
-<div class="top-bar">
-  <div class="container">
-    <div class="date-weather">
-      <span><i class="fas fa-calendar"></i> <span id="current-date"></span></span>
-      <span><i class="fas fa-thermometer-half"></i> Астана: +18°C</span>
-    </div>
-    <div class="social-links">
-      <a href="https://www.facebook.com/eknot.me" target="_blank"><i class="fab fa-facebook"></i></a>
-      <a href="https://t.me/eknot_support_bot" target="_blank"><i class="fab fa-telegram"></i></a>
-      <a href="https://www.instagram.com/eknot.me/" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://api.whatsapp.com/message/L52NIEVMZ4GXB1?autoload=1&app_absent=0" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    </div>
-  </div>
-</div>
-
 <!-- Header -->
 <header>
   <div class="header-content">
@@ -1084,12 +1068,13 @@
 <footer>
   <div class="footer-content">
     <div class="footer-section">
-      <h5>О нас</h5>
+      <h5>О проекте</h5>
       <ul>
-        <li><a href="#">История проекта</a></li>
+        <li><a href="#">О нас</a></li>
         <li><a href="#">Редакция</a></li>
         <li><a href="#">Контакты</a></li>
         <li><a href="#">Реклама</a></li>
+        <li><a href="#">Вакансии</a></li>
       </ul>
     </div>
     
@@ -1100,35 +1085,126 @@
         <li><a href="#">Экономика</a></li>
         <li><a href="#">Общество</a></li>
         <li><a href="#">Спорт</a></li>
-        <li><a href="#">Технологии</a></li>
+        <li><a href="#">Культура</a></li>
       </ul>
     </div>
     
     <div class="footer-section">
       <h5>Сервисы</h5>
       <ul>
-        <li><a href="#">RSS подписка</a></li>
-        <li><a href="#">Мобильное приложение</a></li>
-        <li><a href="#">Push-уведомления</a></li>
+        <li><a href="#">Курсы валют</a></li>
+        <li><a href="#">Погода</a></li>
         <li><a href="#">Архив новостей</a></li>
+        <li><a href="#">RSS</a></li>
+        <li><a href="#">Мобильное приложение</a></li>
       </ul>
     </div>
     
     <div class="footer-section">
-      <h5>Информация</h5>
+      <h5>Связь с нами</h5>
       <ul>
-        <li><a href="#">Политика конфиденциальности</a></li>
-        <li><a href="#">Пользовательское соглашение</a></li>
-        <li><a href="#">Правила комментирования</a></li>
-        <li><a href="#">Карта сайта</a></li>
+        <li><a href="mailto:info@eknot.me"><i class="fas fa-envelope"></i> info@eknot.me</a></li>
+        <li><a href="tel:+77074085858"><i class="fas fa-phone"></i> +7 (707) 408 58 58</a></li>
+        <li><a href="https://t.me/eknot_support_bot"><i class="fab fa-telegram"></i> eknot_support_bot</a></li>
+        <li><a href="https://api.whatsapp.com/message/L52NIEVMZ4GXB1?autoload=1&app_absent=0"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
       </ul>
+      <div style="margin-top: 20px;">
+        <a href="https://www.facebook.com/eknot.me" style="color: #94a3b8; font-size: 20px; margin-right: 15px;"><i class="fab fa-facebook"></i></a>
+        <a href="https://t.me/eknot_support_bot" style="color: #94a3b8; font-size: 20px; margin-right: 15px;"><i class="fab fa-telegram"></i></a>
+        <a href="https://www.instagram.com/eknot.me/" style="color: #94a3b8; font-size: 20px; margin-right: 15px;"><i class="fab fa-instagram"></i></a>
+        <a href="https://api.whatsapp.com/message/L52NIEVMZ4GXB1?autoload=1&app_absent=0" style="color: #94a3b8; font-size: 20px; margin-right: 15px;"><i class="fab fa-whatsapp"></i></a>
+      </div>
     </div>
   </div>
   
   <div class="footer-bottom">
-    <p>&copy; 2024 KazNews. Все права защищены. Новости политики Казахстана.</p>
+    <p>&copy; 2025 KazNews — Новости Казахстана. Все права защищены. | <a href="#" style="color: #94a3b8;">Политика конфиденциальности</a> | <a href="#" style="color: #94a3b8;">Пользовательское соглашение</a></p>
   </div>
 </footer>
+
+<style>
+  .weather-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .weather-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #f8fafc;
+    border-radius: 8px;
+  }
+
+  .weather-city {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .weather-temp {
+    font-size: 18px;
+    font-weight: 600;
+    color: #00b050;
+  }
+
+  .weather-desc {
+    font-size: 12px;
+    color: #64748b;
+    text-align: right;
+  }
+
+  .play-button:hover {
+    background: rgba(0,176,80,0.9) !important;
+    transform: translate(-50%, -50%) scale(1.1);
+    transition: all 0.3s ease;
+  }
+
+  /* Добавляем интерактивность */
+  .news-card:hover .play-button {
+    background: rgba(0,176,80,0.8);
+  }
+
+  /* Анимация для breaking news */
+  @keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+  }
+
+  .breaking-label {
+    animation: pulse 2s infinite;
+  }
+
+  /* Улучшение мобильной версии */
+  @media (max-width: 480px) {
+    .hero-overlay h2 {
+      font-size: 20px;
+    }
+    
+    .hero-overlay p {
+      font-size: 14px;
+    }
+    
+    .section-header h3 {
+      font-size: 20px;
+    }
+    
+    .weather-item {
+      flex-direction: column;
+      text-align: center;
+      gap: 5px;
+    }
+    
+    .weather-desc {
+      text-align: center;
+    }
+  }
+</style>
 
 <script>
 // Display current date

@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KazNews - Общество Казахстана</title>
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .top-bar {
+      background: #1e293b;
+      color: white;
+      padding: 8px 0;
+      font-size: 12px;
+    }
+
+    .top-bar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .date-weather {
+      display: flex;
+      gap: 20px;
+    }
+
+    .social-links a {
+      color: #94a3b8;
+      margin-left: 10px;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #00b050;
+    }
+
+    header {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #00b050;
+    }
+
+    .logo span {
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 400;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: #f1f5f9;
+      border-radius: 25px;
+      padding: 8px 15px;
+      width: 300px;
+    }
+
+    .search-box input {
+      border: none;
+      background: none;
+      outline: none;
+      flex: 1;
+      padding: 5px;
+      font-size: 14px;
+    }
+
+    .search-box i {
+      color: #64748b;
+      cursor: pointer;
+    }
+
+    nav {
+      background: #00b050;
+      padding: 0;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li a {
+      display: block;
+      padding: 15px 20px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s;
+      position: relative;
+    }
+
+    .nav-links li a:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .nav-links li a.active {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .breadcrumb {
+      background: #e2e8f0;
+      padding: 15px 0;
+    }
+
+    .breadcrumb-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .breadcrumb a {
+      color: #64748b;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      color: #00b050;
+    }
+
+    .breadcrumb .current {
+      color: #1e293b;
+      font-weight: 600;
+    }
+
+    .breaking-news {
+      background: #dc2626;
+      color: white;
+      padding: 10px 0;
+      overflow: hidden;
+    }
+
+    .breaking-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .breaking-label {
+      background: white;
+      color: #dc2626;
+      padding: 5px 15px;
+      border-radius: 15px;
+      font-weight: 600;
+      font-size: 12px;
+      white-space: nowrap;
+      animation: pulse 2s infinite;
+    }
+
+    .breaking-text {
+      animation: scroll 30s linear infinite;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    .page-header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .page-header p {
+      font-size: 16px;
+      color: #64748b;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .main-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      margin-bottom: 40px;
+    }
+
+    .hero-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white;
+      padding: 40px 30px 30px;
+    }
+
+    .hero-overlay .category {
+      background: #059669;
+      padding: 5px 12px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .hero-overlay h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      line-height: 1.3;
+    }
+
+    .hero-overlay p {
+      font-size: 16px;
+      opacity: 0.9;
+      margin-bottom: 15px;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    /* Social Indicators */
+    .indicators-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .indicator-card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .indicator-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .indicator-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 15px;
+      background: linear-gradient(135deg, #000000, #047857);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+    }
+
+    .indicator-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 5px;
+    }
+
+    .indicator-label {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 10px;
+    }
+
+    .indicator-change {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    .indicator-change.positive {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .indicator-change.negative {
+      background: #fecaca;
+      color: #991b1b;
+    }
+
+    /* News Sections */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #dc2626;
+    }
+
+    .section-header h3 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    .view-all {
+      color: #dc2626;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .news-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .news-card .content {
+      padding: 20px;
+    }
+
+    .news-card .category {
+      background: #fee2e2;
+      color: #dc2626;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .news-card h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      line-height: 1.4;
+      color: #1e293b;
+    }
+
+    .news-card p {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .news-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    .society-tabs {
+      margin-bottom: 30px;
+    }
+
+    .tab-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .tab-button {
+      background: #f1f5f9;
+      color: #64748b;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .tab-button.active {
+      background: #dc2626;
+      color: white;
+    }
+
+    .tab-button:hover {
+      background: #e2e8f0;
+    }
+
+    .tab-button.active:hover {
+      background: #b91c1c;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .widget {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .widget h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #1e293b;
+      border-bottom: 2px solid #dc2626;
+      padding-bottom: 10px;
+    }
+
+    .social-leaders {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .leader-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px;
+      background: #f8fafc;
+      border-radius: 10px;
+      transition: all 0.3s;
+    }
+
+    .leader-card:hover {
+      background: #e2e8f0;
+    }
+
+    .leader-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #7c3aed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .leader-info h5 {
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 5px;
+    }
+
+    .leader-info p {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .trending-list {
+      list-style: none;
+    }
+
+    .trending-list li {
+      padding: 12px 0;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .trending-number {
+      background: #7c3aed;
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .trending-list li a {
+      text-decoration: none;
+      color: #1e293b;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .trending-list li a:hover {
+      color: #7c3aed;
+    }
+
+    /* Footer */
+    footer {
+      background: #1e293b;
+      color: white;
+      padding: 50px 0 20px;
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+
+    .footer-section h5 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #00b050;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-section ul li a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    .footer-section ul li a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #334155;
+      margin-top: 40px;
+      padding-top: 20px;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .search-box {
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+      }
+
+      .nav-links li a {
+        padding: 12px 15px;
+        font-size: 14px;
+      }
+
+      .main-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .hero-overlay h2 {
+        font-size: 24px;
+      }
+
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .indicators-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      .page-header h1 {
+        font-size: 28px;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .tab-buttons {
+        justify-content: center;
+      }
+
+      .breaking-container {
+        padding: 0 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-content">
+    <div class="logo">
+      <i class="fas fa-newspaper" style="font-size: 28px; color: #00b050;"></i>
+      <div>
+        <h1>KazNews</h1>
+        <span>Новости Казахстана</span>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <input type="text" placeholder="Поиск общественных новостей...">
+      <i class="fas fa-search"></i>
+    </div>
+  </div>
+</header>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-container">
+    <ul class="nav-links">
+      <li><a href="news.html"><i class="fas fa-home"></i> Главная</a></li>
+      <li><a href="policy.html"><i class="fas fa-landmark"></i> Политика</a></li>
+      <li><a href="economy.html"><i class="fas fa-chart-line"></i> Экономика</a></li>
+      <li><a href="#" class="active"><i class="fas fa-users"></i> Общество</a></li>
+      <li><a href="sport.html"><i class="fas fa-futbol"></i> Спорт</a></li>
+      <li><a href="technologies.html"><i class="fas fa-laptop"></i> Технологии</a></li>
+      <li><a href="world.html"><i class="fas fa-globe"></i> Мир</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <div class="breadcrumb-container">
+    <a href="#"><i class="fas fa-home"></i> Главная</a>
+    <i class="fas fa-chevron-right"></i>
+    <span class="current"><i class="fas fa-users"></i> Общество</span>
+  </div>
+</div>
+
+<!-- Breaking News -->
+<div class="breaking-news">
+  <div class="breaking-container">
+    <div class="breaking-label">ОБЩЕСТВО</div>
+    <div class="breaking-text">
+      Новая программа социальной поддержки для многодетных семей • Открытие крупнейшего медицинского центра в Алматы • Реформа системы образования показывает первые результаты
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1><i class="fas fa-users" style="color: #00b050;"></i> Общество Казахстана</h1>
+    <p>Актуальные новости общественной жизни, социальные инициативы, культурные события и важные изменения в жизни казахстанцев</p>
+  </div>
+
+  <!-- Social Indicators -->
+  <div class="indicators-grid">
+    <div class="indicator-card">
+      <div class="indicator-icon">
+        <i class="fas fa-user-graduate"></i>
+      </div>
+      <div class="indicator-value">94.2%</div>
+      <div class="indicator-label">Грамотность населения</div>
+      <div class="indicator-change positive">+0.3%</div>
+    </div>
+
+    <div class="indicator-card">
+      <div class="indicator-icon">
+        <i class="fas fa-heartbeat"></i>
+      </div>
+      <div class="indicator-value">73.5</div>
+      <div class="indicator-label">Средняя продолжительность жизни</div>
+      <div class="indicator-change positive">+0.8</div>
+    </div>
+
+    <div class="indicator-card">
+      <div class="indicator-icon">
+        <i class="fas fa-baby"></i>
+      </div>
+      <div class="indicator-value">2.8</div>
+      <div class="indicator-label">Рождаемость на 1000 чел.</div>
+      <div class="indicator-change positive">+0.1</div>
+    </div>
+
+    <div class="indicator-card">
+      <div class="indicator-icon">
+        <i class="fas fa-home"></i>
+      </div>
+      <div class="indicator-value">78%</div>
+      <div class="indicator-label">Обеспеченность жильем</div>
+      <div class="indicator-change positive">+2.5%</div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-card">
+      <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&h=400&fit=crop" alt="Главная общественная новость">
+      <div class="hero-overlay">
+        <span class="category">СОЦИАЛЬНАЯ ПОЛИТИКА</span>
+        <h2>Запущена масштабная программа поддержки многодетных семей</h2>
+        <p>Правительство Казахстана утвердило новые меры социальной поддержки семей с тремя и более детьми, включая жилищные субсидии и образовательные льготы.</p>
+        <div class="hero-meta">
+          <span><i class="fas fa-clock"></i> 1 час назад</span>
+          <span><i class="fas fa-eye"></i> 24,891 просмотр</span>
+          <span><i class="fas fa-comment"></i> 312 комментариев</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-layout">
+    <!-- Main Content -->
+    <main>
+      <!-- Society Tabs -->
+      <div class="society-tabs">
+        <div class="tab-buttons">
+          <button class="tab-button active">Все новости</button>
+          <button class="tab-button">Образование</button>
+          <button class="tab-button">Здравоохранение</button>
+          <button class="tab-button">Культура</button>
+          <button class="tab-button">Социальная защита</button>
+          <button class="tab-button">Религия</button>
+        </div>
+      </div>
+
+      <!-- Latest Society News -->
+      <section>
+        <div class="section-header">
+          <h3><i class="fas fa-newspaper"></i> Последние общественные новости</h3>
+          <a href="#" class="view-all">Все новости <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="news-grid">
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=200&fit=crop" alt="Образование">
+            <div class="content">
+              <span class="category">ОБРАЗОВАНИЕ</span>
+              <h4>Новые стандарты школьного образования вступают в силу</h4>
+              <p>Министерство образования утвердило обновленные учебные программы, направленные на развитие критического мышления и цифровых навыков учащихся.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 2 часа назад</span>
+                <span><i class="fas fa-eye"></i> 15,234</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=200&fit=crop" alt="Здравоохранение">
+            <div class="content">
+              <span class="category">ЗДРАВООХРАНЕНИЕ</span>
+              <h4>Открытие нового медицинского центра в Алматы</h4>
+              <p>Крупнейший многопрофильный медицинский центр начал работу, предоставляя современные услуги в области кардиологии и онкологии.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 3 часа назад</span>
+                <span><i class="fas fa-eye"></i> 18,567</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop" alt="Культура">
+            <div class="content">
+              <span class="category">КУЛЬТУРА</span>
+              <h4>Фестиваль казахской культуры собрал рекордное число участников</h4>
+              <p>Международный фестиваль "Наследие предков" привлек более 500 артистов из 15 стран для популяризации национальной культуры.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 4 часа назад</span>
+                <span><i class="fas fa-eye"></i> 12,893</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=200&fit=crop" alt="Социальная защита">
+            <div class="content">
+              <span class="category">СОЦИАЛЬНАЯ ЗАЩИТА</span>
+              <h4>Увеличение пенсий и социальных выплат с нового года</h4>
+              <p>Правительство утвердило индексацию пенсий на 8.5% и повышение размера государственных социальных пособий для малообеспеченных семей.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 5 часов назад</span>
+                <span><i class="fas fa-eye"></i> 22,456</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=200&fit=crop" alt="Экология">
+            <div class="content">
+              <span class="category">ЭКОЛОГИЯ</span>
+              <h4>Запуск программы озеленения городов Казахстана</h4>
+              <p>В рамках экологической инициативы планируется высадить более 2 миллионов деревьев в крупных городах страны до конца года.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 6 часов назад</span>
+                <span><i class="fas fa-eye"></i> 9,876</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400&h=200&fit=crop" alt="Волонтерство">
+            <div class="content">
+              <span class="category">ВОЛОНТЕРСТВО</span>
+              <h4>Молодежное волонтерское движение набирает обороты</h4>
+              <p>Количество зарегистрированных волонтеров в Казахстане выросло на 40% за последний год благодаря государственным программам поддержки.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 7 часов назад</span>
+                <span><i class="fas fa-eye"></i> 14,325</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Regional News -->
+      <section>
+        <div class="section-header">
+          <h3><i class="fas fa-map-marker-alt"></i> Региональные новости</h3>
+          <a href="#" class="view-all">Все регионы <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="news-grid">
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=200&fit=crop" alt="Астана">
+            <div class="content">
+              <span class="category">АСТАНА</span>
+              <h4>Новая детская больница открылась в столице</h4>
+              <p>Современный медицинский комплекс оснащен передовым оборудованием и рассчитан на 300 коек для юных пациентов.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 8 часов назад</span>
+                <span><i class="fas fa-eye"></i> 16,789</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=200&fit=crop" alt="Алматы">
+            <div class="content">
+              <span class="category">АЛМАТЫ</span>
+              <h4>Реконструкция парка Горького завершена</h4>
+              <p>Любимое место отдыха алматинцев получило новые игровые площадки, спортивные зоны и современную инфраструктуру.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 10 часов назад</span>
+                <span><i class="fas fa-eye"></i> 11,234</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="news-card">
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&h=200&fit=crop" alt="Шымкент">
+            <div class="content">
+              <span class="category">ШЫМКЕНТ</span>
+              <h4>Открытие нового культурного центра</h4>
+              <p>Многофункциональный центр будет способствовать развитию творческих способностей молодежи и сохранению культурного наследия.</p>
+              <div class="news-meta">
+                <span><i class="fas fa-clock"></i> 12 часов назад</span>
+                <span><i class="fas fa-eye"></i> 8,567</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <!-- Social Leaders -->
+      <div class="widget">
+        <h4><i class="fas fa-crown"></i> Лидеры общественного мнения</h4>
+        <div class="social-leaders">
+          <div class="leader-card">
+            <div class="leader-avatar">АН</div>
+            <div class="leader-info">
+              <h5>Айгуль Нурмагамбетова</h5>
+              <p>Активист образования • 45K подписчиков</p>
+            </div>
+          </div>
+
+          <div class="leader-card">
+            <div class="leader-avatar">ДС</div>
+            <div class="leader-info">
+              <h5>Данияр Сарсенов</h5>
+              <p>Эколог-общественник • 38K подписчиков</p>
+            </div>
+          </div>
+
+          <div class="leader-card">
+            <div class="leader-avatar">МТ</div>
+            <div class="leader-info">
+              <h5>Мадина Турсынбаева</h5>
+              <p>Врач-волонтер • 52K подписчиков</p>
+            </div>
+          </div>
+
+          <div class="leader-card">
+            <div class="leader-avatar">БА</div>
+            <div class="leader-info">
+              <h5>Бахытжан Абишев</h5>
+              <p>Культуролог • 29K подписчиков</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trending Topics -->
+      <div class="widget">
+        <h4><i class="fas fa-fire"></i> Актуальные темы</h4>
+        <ul class="trending-list">
+          <li>
+            <span class="trending-number">1</span>
+            <a href="#">Реформа системы здравоохранения</a>
+          </li>
+          <li>
+            <span class="trending-number">2</span>
+            <a href="#">Поддержка многодетных семей</a>
+          </li>
+          <li>
+            <span class="trending-number">3</span>
+            <a href="#">Цифровизация образования</a>
+          </li>
+          <li>
+            <span class="trending-number">4</span>
+            <a href="#">Экологические инициативы</a>
+          </li>
+          <li>
+            <span class="trending-number">5</span>
+            <a href="#">Развитие волонтерства</a>
+          </li>
+          <li>
+            <span class="trending-number">6</span>
+            <a href="#">Культурное наследие</a>
+          </li>
+          <li>
+            <span class="trending-number">7</span>
+            <a href="#">Социальная защита населения</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="widget">
+        <h4><i class="fas fa-chart-bar"></i> Статистика дня</h4>
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #f8fafc; border-radius: 8px;">
+            <span style="font-size: 14px; color: #64748b;">Новых вакансий</span>
+            <strong style="color: #16a34a;">+2,847</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #f8fafc; border-radius: 8px;">
+            <span style="font-size: 14px; color: #64748b;">Социальных проектов</span>
+            <strong style="color: #16a34a;">156</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #f8fafc; border-radius: 8px;">
+            <span style="font-size: 14px; color: #64748b;">Волонтеров онлайн</span>
+            <strong style="color: #16a34a;">18,934</strong>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h5>О проекте</h5>
+      <ul>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Редакция</a></li>
+        <li><a href="#">Контакты</a></li>
+        <li><a href="#">Реклама</a></li>
+        <li><a href="#">Вакансии</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h5>Разделы</h5>
+      <ul>
+        <li><a href="#">Политика</a></li>
+        <li><a href="#">Экономика</a></li>
+        <li><a href="#">Общество</a></li>
+        <li><a href="#">Спорт</a></li>
+        <li><a href="#">Культура</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h5>Сервисы</h5>
+      <ul>
+        <li><a href="#">Курсы валют</a></li>
+        <li><a href="#">Погода</a></li>
+        <li><a href="#">Архив новостей</a></li>
+        <li><a href="#">RSS</a></li>
+        <li><a href="#">Мобильное приложение</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h5>Связь с нами</h5>
+      <ul>
+        <li><a href="mailto:info@eknot.me"><i class="fas fa-envelope"></i> info@eknot.me</a></li>
+        <li><a href="tel:+77074085858"><i class="fas fa-phone"></i> +7 (707) 408 58 58</a></li>
+        <li><a href="https://t.me/eknot_support_bot"><i class="fab fa-telegram"></i> eknot_support_bot</a></li>
+        <li><a href="https://api.whatsapp.com/message/L52NIEVMZ4GXB1?autoload=1&app_absent=0"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+      </ul>
+      <div style="margin-top: 20px;">
+        <a href="https://www.facebook.com/eknot.me" style="color: #94a3b8; font-size: 20px; margin-right: 15px;"><i class="fab fa-facebook"></i></a>
+        <a href="https://t.me/eknot_support_bot" style="color: #94a3b8; font-size: 20px; margin-right: 15px;"><i class="fab fa-telegram"></i></a>
+        <a href="https://www.instagram.com/eknot.me/" style="color: #94a3b8; font-size: 20px; margin-right: 15px;"><i class="fab fa-instagram"></i></a>
+        <a href="https://api.whatsapp.com/message/L52NIEVMZ4GXB1?autoload=1&app_absent=0" style="color: #94a3b8; font-size: 20px; margin-right: 15px;"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <p>&copy; 2025 KazNews — Новости Казахстана. Все права защищены. | <a href="#" style="color: #94a3b8;">Политика конфиденциальности</a> | <a href="#" style="color: #94a3b8;">Пользовательское соглашение</a></p>
+  </div>
+</footer>
+
+<style>
+  .weather-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .weather-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #f8fafc;
+    border-radius: 8px;
+  }
+
+  .weather-city {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .weather-temp {
+    font-size: 18px;
+    font-weight: 600;
+    color: #00b050;
+  }
+
+  .weather-desc {
+    font-size: 12px;
+    color: #64748b;
+    text-align: right;
+  }
+
+  .play-button:hover {
+    background: rgba(0,176,80,0.9) !important;
+    transform: translate(-50%, -50%) scale(1.1);
+    transition: all 0.3s ease;
+  }
+
+  /* Добавляем интерактивность */
+  .news-card:hover .play-button {
+    background: rgba(0,176,80,0.8);
+  }
+
+  /* Анимация для breaking news */
+  @keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+  }
+
+  .breaking-label {
+    animation: pulse 2s infinite;
+  }
+
+  /* Улучшение мобильной версии */
+  @media (max-width: 480px) {
+    .hero-overlay h2 {
+      font-size: 20px;
+    }
+    
+    .hero-overlay p {
+      font-size: 14px;
+    }
+    
+    .section-header h3 {
+      font-size: 20px;
+    }
+    
+    .weather-item {
+      flex-direction: column;
+      text-align: center;
+      gap: 5px;
+    }
+    
+    .weather-desc {
+      text-align: center;
+    }
+  }
+</style>
+
+<script>
+// Set current date
+document.getElementById('current-date').textContent = new Date().toLocaleDateString('ru-RU', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+// Tab functionality
+const tabButtons = document.querySelectorAll('.tab-button');
+tabButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    tabButtons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+  });
+});
+
+// Search functionality
+const searchInput = document.querySelector('.search-box input');
+const searchIcon = document.querySelector('.search-box i');
+
+searchIcon.addEventListener('click', () => {
+  if (searchInput.value.trim()) {
+    alert('Поиск: ' + searchInput.value);
+  }
+});
+
+searchInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter' && searchInput.value.trim()) {
+    alert('Поиск: ' + searchInput.value);
+  }
+});
+
+// Smooth scroll for internal links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// News card hover effects
+const newsCards = document.querySelectorAll('.news-card');
+newsCards.forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    card.style.transform = 'translateY(-5px)';
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'translateY(0)';
+  });
+});
+
+// Dynamic counter animation for indicators
+const indicators = document.querySelectorAll('.indicator-value');
+indicators.forEach(indicator => {
+  const target = indicator.textContent;
+  const isPercentage = target.includes('%');
+  const numValue = parseFloat(target.replace('%', ''));
+  
+  let current = 0;
+  const increment = numValue / 50;
+  
+  const updateCounter = () => {
+    if (current < numValue) {
+      current += increment;
+      indicator.textContent = current.toFixed(1) + (isPercentage ? '%' : '');
+      requestAnimationFrame(updateCounter);
+    } else {
+      indicator.textContent = target;
+    }
+  };
+  
+  // Start animation when element is in viewport
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        updateCounter();
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+  
+  observer.observe(indicator);
+});
+</script>
+
+</body>
+</html>
